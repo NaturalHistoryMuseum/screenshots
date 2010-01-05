@@ -1,8 +1,9 @@
 #!/bin/bash
 # Change to the directory with the firefox-screen script and for output
-cd /var/www/html/screenshots
+cd /var/www/screenshots.scratchpads.eu
 # For each site.
-for i in $( ls -1 /var/www/html/sites |grep -v ^all$|grep -v ^default|grep -v \~|grep -v settings);do
+for i in $(ls -1 /var/lib/drupal* | sort | uniq | grep -v "/" | grep -v "^d6." | sed "/^$/d" | grep "\.")
+do
 	echo $i
 
 	# Normal
