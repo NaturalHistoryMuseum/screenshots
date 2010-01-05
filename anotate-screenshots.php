@@ -4,7 +4,12 @@ $convert_string = "convert -background '#0008' -fill white -gravity west -size 1
 $files = scandir('.');
 // Get the details from dev.scratchpads.eu
 $databasedetails = parse_ini_file('/etc/drupal/6/drupal_db_passwords',true);
-print_r($databasedetails);
+mysql_connect("localhost", $databasedetails['devscratchpadseu']['user'], $databasedetails['devscratchpadseu']['password'], TRUE, 2);
+mysql_select_db('devscratchpadseu');
+$result = mysql_query("SELECT value FROM variable WHERE name = 'scratchpad_sites_list'");
+while($row = mysql_fetch_array($result)){
+  print_r($row);
+}
 exit;
 foreach($files as $file){
   if(strpos($file,'.jpg')>0){
@@ -14,8 +19,6 @@ foreach($files as $file){
       $domain = explode(".",$file);
       $domain = str_replace('-','',$domain[1]);
     }
-    mysql_connect("localhost", $databasedetails[$domain]['user'], $databasedetails[$domain]['password'], TRUE, 2);
-    mysql_select_db($domain);
     $nodes = array_pop(mysql_fetch_array(mysql_query("SELECT COUNT(nid) AS nodes FROM node;")));
     $users = array_pop(mysql_fetch_array(mysql_query("SELECT COUNT(uid) AS users FROM users")));
     $views = array_pop(mysql_fetch_array(mysql_query("SELECT SUM(totalcount) AS totalcount FROM node_counter;")));
