@@ -10,7 +10,6 @@ cd /var/www/html/screenshots
 # For each site.
 for i in $( ls -1 /var/www/html/sites |grep -v ^all$|grep -v ^default|grep -v \~|grep -v settings);do
 	./firefox-screenshot-long $i
-	sleep 10
 done
 
 # Finally, kill the XVFB

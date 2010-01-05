@@ -15,7 +15,7 @@
 $files = scandir('.');
 foreach($files as $file){
   if(substr($file,-9)=='small.jpg' || substr($file,-19)=='small.annotated.jpg'){
-    ?><img src="/screenshots/<?php echo $file; ?>"/><?php
+    ?><img src="<?php echo $file; ?>"/><?php
   }
 }
 

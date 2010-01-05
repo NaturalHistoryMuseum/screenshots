@@ -13,8 +13,6 @@ cd /var/www/screenshots.scratchpads.eu
 for i in $(ls -1 /var/lib/drupal* | sort | uniq | grep -v "/" | grep -v "^d6." | sed "/^$/d" | grep "\.")
 do
 	./firefox-screenshot $i
-	# Pause between to not overload the server
-	sleep 25
 done
 
 # Finally, kill the XVFB
