@@ -4,9 +4,9 @@ $convert_string = "convert -background '#0008' -fill white -gravity west -size 1
 $files = scandir('.');
 // Get the details from dev.scratchpads.eu
 $databasedetails = parse_ini_file('/etc/drupal/6/drupal_db_passwords',true);
-mysql_connect("localhost", $databasedetails['devscratchpadseu']['user'], $databasedetails['devscratchpadseu']['password'], TRUE, 2);
-mysql_select_db('devscratchpadseu');
-$sites = unserialize(array_pop(mysql_fetch_array(mysql_query("SELECT value FROM variable WHERE name = 'scratchpad_sites_list'"))));
+mysqli_connect("localhost", $databasedetails['devscratchpadseu']['user'], $databasedetails['devscratchpadseu']['password'], TRUE, 2);
+mysqli_select_db('devscratchpadseu');
+$sites = unserialize(array_pop(mysqli_fetch_object(mysqli_query("SELECT value FROM variable WHERE name = 'scratchpad_sites_list'"))));
 foreach($sites as $url => $site_details){
   echo "$url\n";
   /*
