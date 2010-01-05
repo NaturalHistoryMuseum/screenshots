@@ -5,7 +5,7 @@ $files = scandir('.');
 // Get the details from dev.scratchpads.eu
 $databasedetails = parse_ini_file('/etc/drupal/6/drupal_db_passwords',true);
 $connection = mysqli_init();
-mysqli_real_connect("localhost", $databasedetails['devscratchpadseu']['user'], $databasedetails['devscratchpadseu']['password'], 'devscratchpadseu', 3306, NULL, MYSQLI_CLIENT_FOUND_ROWS);
+mysqli_real_connect($connection, "localhost", $databasedetails['devscratchpadseu']['user'], $databasedetails['devscratchpadseu']['password'], 'devscratchpadseu', 3306, NULL, MYSQLI_CLIENT_FOUND_ROWS);
 mysqli_query($connection, 'SET NAMES "utf8"');
 $sites = unserialize(array_pop(mysqli_fetch_array(mysqli_query($connection, "SELECT value FROM variable WHERE name = 'scratchpad_sites_list'", MYSQLI_USE_RESULT))));
 foreach($sites as $url => $site_details){
