@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /var/www/html/screenshots
+cd /var/www/screenshots.scratchpads.eu
 ./create-screenshots
 #./create-screenshots-long
 php anotate-screenshots.php | bash
