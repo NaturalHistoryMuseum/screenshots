@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Create an X Virtual Frame Buffer (wait for it to start)
-Xvfb :2 -screen 0 1040x768x24 -fbdir /tmp -nolisten inet6 &>/dev/null &
+Xvfb :2 -screen 0 1041x768x24 -fbdir /tmp -nolisten inet6 &>/dev/null &
 
 # Make sure it has started and is sorted
 sleep 60
