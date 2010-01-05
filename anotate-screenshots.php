@@ -9,22 +9,6 @@ mysqli_real_connect($connection, "localhost", $databasedetails['devscratchpadseu
 mysqli_query($connection, 'SET NAMES "utf8"');
 $sites = unserialize(array_pop(mysqli_fetch_array(mysqli_query($connection, "SELECT value FROM variable WHERE name = 'scratchpad_sites_list'", MYSQLI_USE_RESULT))));
 foreach($sites as $url => $site_details){
-  echo "$url\n";
-  /*
-  // $file is the start need to connect to a database now, and do some stuff
-  $domain = str_replace('-','',array_shift(explode(".", $file)));
-  if($domain =="pad"){
-    $domain = explode(".",$file);
-    $domain = str_replace('-','',$domain[1]);
-  }
-  $nodes = array_pop(mysql_fetch_array(mysql_query("SELECT COUNT(nid) AS nodes FROM node;")));
-  $users = array_pop(mysql_fetch_array(mysql_query("SELECT COUNT(uid) AS users FROM users")));
-  $views = array_pop(mysql_fetch_array(mysql_query("SELECT SUM(totalcount) AS totalcount FROM node_counter;")));
-  $caption = ' Pages: '.$nodes.'\n Users: '.$users.'\n Views: '.$views;
-  $file_parts = explode('.',$file);
-  array_pop($file_parts);
-  array_push($file_parts,'annotated.jpg');
-  $filenew = implode('.',$file_parts);
-  echo sprintf($convert_string,$caption,$file,$filenew)."\n";
-*/
+  $caption = ' Pages: '.array_sum($site_details['nodes']).'\n Users: '.$site_details['users']['total'].'\n Views: '.$site_details['views'];
+  echo sprintf($convert_string,$caption,"$url.jpg","$url.anotated.jpg")."\n";
 }
