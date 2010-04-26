@@ -5,4 +5,5 @@ sleep 15
 FILENAME=`echo $1|sed "s|/||g"`
 DISPLAY=:2.0 import -window root $FILENAME".jpg"
 convert $FILENAME".jpg" -crop 1024x768+1+1 $FILENAME".jpg"
+convert $FILENAME".jpg" -resize 300x225 $FILENAME".small.jpg"
 killall -9 firefox firefox-bin &>/dev/null

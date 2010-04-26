@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Create an X Virtual Frame Buffer (wait for it to start)
+Xvfb :2 -screen 0 1041x768x24 -fbdir /tmp -nolisten inet6 &>/dev/null &
+
+# Make sure it has started and is sorted
+sleep 15
+
+# Make sure we're in the right folder
+cd /var/www/screenshots.scratchpads.eu
+
+# Create the file
+./firefox-screenshot-and-resize $1
+
+# Finally, kill the XVFB
+killall -9 Xvfb
