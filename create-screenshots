@@ -4,7 +4,7 @@
 Xvfb :2 -screen 0 1041x768x24 -fbdir /tmp -nolisten inet6 &>/dev/null &
 
 # Make sure it has started and is sorted
-sleep 60
+sleep 120
 
 # Make sure we're in the right folder
 cd /var/www/screenshots.scratchpads.eu
