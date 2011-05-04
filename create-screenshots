@@ -2,6 +2,7 @@
 
 # Create an X Virtual Frame Buffer (wait for it to start)
 Xvfb :2 -screen 0 1041x768x24 -fbdir /tmp -nolisten inet6 &>/dev/null &
+XVFB_PID=$!
 
 # Make sure it has started and is sorted
 sleep 120
@@ -16,4 +17,5 @@ do
 done
 
 # Finally, kill the XVFB
-killall -9 Xvfb
+kill -9 $XVFB_PID &>/dev/null
+
