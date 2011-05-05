@@ -18,8 +18,8 @@ do
 	do
 		./firefox-screenshot $i
 	done
+	# Finally, kill the XVFB
+	kill -9 $XVFB_PID &>/dev/null
 done
 
-# Finally, kill the XVFB
-kill -9 $XVFB_PID &>/dev/null
 
