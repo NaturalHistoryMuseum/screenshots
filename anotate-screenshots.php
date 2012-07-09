@@ -1,5 +1,5 @@
 <?php
-$convert_string = "convert -background '#0008' -fill white -gravity west -size 1024x500 caption:\"%s\" +size %s +swap -gravity south -composite %s";
+$convert_string = "convert -background '#0008' -fill white -gravity west -size 1200x600 caption:\"%s\" +size %s +swap -gravity south -composite %s";
 // Get a list of all the files in the directory, and filter HARD!
 $files = scandir('.');
 // Get the details from dev.scratchpads.eu
@@ -17,6 +17,6 @@ foreach($sites as $url => $site_details){
       $nodes = 1;
     }
     $caption = ' Pages: '.$nodes.'\n Users: '.$site_details['users']['total'].'\n Views: '.$site_details['views'];
-    echo sprintf($convert_string,$caption,"$url.jpg","$url.annotated.jpg")."\n";
+    echo sprintf($convert_string,$caption,"$url.1200x900.jpg","$url.annotated.jpg")."\n";
   }
 }

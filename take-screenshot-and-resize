@@ -1,0 +1,4 @@
+#!/bin/bash
+./take-screenshot $@
+FILENAME=`echo $1|sed "s|/||g"`
+convert $FILENAME".jpg" -resize 300x225 $FILENAME".small.jpg"

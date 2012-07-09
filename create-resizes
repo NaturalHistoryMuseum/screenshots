@@ -1,16 +1,16 @@
 #!/bin/bash
-# Change to the directory with the firefox-screen script and for output
+# Change to the directory
 cd /var/www/screenshots.scratchpads.eu
 # For each site.
-for i in $(ls -1 /var/lib/drupal* | sort | uniq | grep -v "/" | grep -v "^d6." | sed "/^$/d" | grep "\.")
+for i in $(ls -1 /var/aegir/.drush/*alias.drushrc.php | sed "s|^/var/aegir/.drush/||;s|.alias.drushrc.php||" | sort -R | grep "\.")
 do
 	echo $i
 
 	# Normal
 	convert $i.annotated.jpg -resize 280x210 $i.medium.annotated.jpg
 	convert $i.annotated.jpg -resize 200x150 $i.small.annotated.jpg
-	convert $i.jpg -resize 280x210 $i.medium.jpg
-	convert $i.jpg -resize 200x150 $i.small.jpg
+	convert $i.1200x900.jpg -resize 280x210 $i.medium.jpg
+	convert $i.1200x900.jpg -resize 200x150 $i.small.jpg
 	convert -page +4+4 $i.medium.jpg -matte \( +clone -background black -shadow 60x4+4+4 \) +swap -background none -mosaic -depth 8 -quality 95 $i.medium.drop.png
 	convert -page +4+4 $i.medium.annotated.jpg -matte \( +clone -background black -shadow 60x4+4+4 \) +swap -background none -mosaic -depth 8 -quality 95 $i.medium.drop.annotated.png
 	convert -page +4+4 $i.small.jpg -matte \( +clone -background black -shadow 60x1+3+3 \) +swap -background none -mosaic -depth 8 -quality 95 $i.small.drop.png

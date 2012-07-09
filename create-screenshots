@@ -1,11 +1,9 @@
 #!/bin/bash
 
 # Create an X Virtual Frame Buffer (wait for it to start)
-Xvfb :2 -screen 0 1041x768x24 -fbdir /tmp -nolisten inet6 &>/dev/null &
+XVFB_WIDTH=$(($1+16))
+Xvfb :2 -screen 0 $XVFB_WIDTH"x"$2"x"24 -fbdir /tmp -nolisten inet6 &>/dev/null &
 XVFB_PID=$!
-
-# Make sure it has started and is sorted
-sleep 120
 
 # Make sure we're in the right folder
 cd /var/www/screenshots.scratchpads.eu
@@ -14,12 +12,10 @@ cd /var/www/screenshots.scratchpads.eu
 while kill -0 $XVFB_PID
 do
 	# For each site.
-	for i in $(ls -1 /var/lib/drupal* | sort | uniq | grep -v "/" | grep -v "^d6." | sed "/^$/d" | grep "\.")
+	for i in $(ls -1 /var/aegir/.drush/*alias.drushrc.php | sed "s|^/var/aegir/.drush/||;s|.alias.drushrc.php||" | sort -R | grep "\.")
 	do
-		./firefox-screenshot $i
+		./take-screenshot $i $1 $2
 	done
 	# Finally, kill the XVFB
 	kill -9 $XVFB_PID &>/dev/null
 done
-
-

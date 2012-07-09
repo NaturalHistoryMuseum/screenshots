@@ -11,7 +11,7 @@ sleep 15
 cd /var/www/screenshots.scratchpads.eu
 
 # Create the file
-./firefox-screenshot-and-resize $1
+./take-screenshot-and-resize $1 1200 900
 
 # Finally, kill the XVFB
 kill -9 $XVFB_PID &>/dev/null
