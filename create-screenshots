@@ -5,6 +5,11 @@ XVFB_WIDTH=$(($1+16))
 Xvfb :2 -screen 0 $XVFB_WIDTH"x"$2"x"24 -fbdir /tmp -nolisten inet6 &>/dev/null &
 XVFB_PID=$!
 
+# Output the PID to the log
+echo "Xvfb PID: "$XVFB_PID
+
+sleep 10
+
 # Make sure we're in the right folder
 cd /var/www/screenshots.scratchpads.eu
 
@@ -12,10 +17,11 @@ cd /var/www/screenshots.scratchpads.eu
 while kill -0 $XVFB_PID
 do
 	# For each site.
-	for i in $(ls -1 /var/aegir/.drush/*alias.drushrc.php | sed "s|^/var/aegir/.drush/||;s|.alias.drushrc.php||" | sort -R | grep "\.")
+	for i in $(ls -1 /var/aegir/.drush/*alias.drushrc.php | sed "s|^/var/aegir/.drush/||;s|.alias.drushrc.php||" | grep "\.")
 	do
 		./take-screenshot $i $1 $2
 	done
 	# Finally, kill the XVFB
 	kill -9 $XVFB_PID &>/dev/null
+	sleep 2
 done
