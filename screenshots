@@ -1,6 +1,5 @@
 #!/bin/bash
 cd /var/www/screenshots.scratchpads.eu
 ./create-screenshots 1200 900
-./create-screenshots 1200 2400
 php anotate-screenshots.php | bash
 ./create-resizes
