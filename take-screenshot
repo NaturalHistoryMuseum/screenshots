@@ -1,9 +1,15 @@
 #!/bin/bash
+FILENAME=`echo $1|sed "s|/||g"`"."$2"x"$3".jpg"
+# Uncomment the following to not update images weekly (once created, the image will be kept).
+#if [ -f $FILENAME ]
+#then
+#	echo "DONE: "$1
+#	exit
+#fi
 echo $1
 XVFB_WIDTH=$(($2+16))
 DISPLAY=:2.0 firefox -width $XVFB_WIDTH -height $3 http://$1 &>/dev/null &
 FIREFOX_PID=$!
-FILENAME=`echo $1|sed "s|/||g"`"."$2"x"$3".jpg"
 sleep 30
 DISPLAY=:2.0 import -window root $FILENAME
 convert $FILENAME -crop $2"x"$3"+0+0" $FILENAME
