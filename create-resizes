@@ -2,7 +2,7 @@
 # Change to the directory
 cd /var/www/screenshots.scratchpads.eu
 # For each site.
-for i in $(ls -1 /var/aegir/.drush/*alias.drushrc.php | sed "s|^/var/aegir/.drush/||;s|.alias.drushrc.php||" | sort -R | grep "\.")
+for i in $(ls -1 /var/aegir/.drush/*alias.drushrc.php | sed "s|^/var/aegir/.drush/||;s|.alias.drushrc.php||" | grep "\.")
 do
 	echo $i
 
